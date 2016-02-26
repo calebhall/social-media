@@ -1,7 +1,7 @@
 var canvas = document.getElementById("canvas"),
     video = document.getElementById("video"),
-    context = canvas.getContext("2d");
-
+    context = canvas.getContext("2d"),
+    audio = new AudioController();
     navigator.getUserMedia = (
     	navigator.getUserMedia ||
     	navigator.webkitGetUserMedia ||
@@ -9,11 +9,13 @@ var canvas = document.getElementById("canvas"),
     	navigator.msGetUserMedia ||
     	false
     	);
-// window.addEventListener("DOMContentLoaded", function() {
+
+        var audioInput =
     var errBack = function(error) {
             console.log("Video capture error: ", error.code);
         };
-     console.log(navigator.getUserMedia)
+                   var audioInput =
+    
 
     if (navigator.getUserMedia) {
     	console.log('normal')
@@ -21,7 +23,7 @@ var canvas = document.getElementById("canvas"),
         	console.log("stream");
 
             video.src = window.URL.createObjectURL(stream);
-            // video.play();
+    
         }, errBack);
 
     } else if (navigator.webkitGetUserMedia) {
@@ -29,17 +31,17 @@ var canvas = document.getElementById("canvas"),
         navigator.webkitGetUserMedia({video: true}, function(stream) {
         		console.log("webkitstream");
             video.src = window.webkitURL.createObjectURL(stream);
-            // video.play();
+              audio:true
+         video:true
         }, errBack);
 
     } else if (navigator.mozGetUserMedia) {
     	    	console.log('moz')
         navigator.mozGetUserMedia({video: true}, function(stream) {
             video.src = window.URL.createObjectURL(stream);
-            // video.play();
+         
         }, errBack);
     }
-// }, false);
 
 document.getElementById("snap").addEventListener("click", function() {
     context.drawImage(video, 0, 0, 640, 480);
