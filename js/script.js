@@ -65,17 +65,6 @@ if (navigator.getUserMedia) {
 
     }, errBack);
 }
-
-function oncaptureFinish(audioblob, videoblob) {
-
-    var audiobase64 = window.URL.createObjectURL(audioblob);
-    var videobase64 = window.URL.createObjectURL(videoblob);
-    document.getElementById('audiored').src = audiobase64;
-    document.getElementById('recordedvideo').src = videobase64;
-    document.getElementById('downloadurl').style.display = '';
-    document.getElementById('downloadurl').href = videobase64;
-    document.getElementById('status').innerHTML = "video=" + Math.ceil(videoblob.size / (1024)) + "KB, Audio=" + Math.ceil(audioblob.size / (1024)) + "   Total= " + (Math.ceil(videoblob.size / (1024)) + Math.ceil(audioblob.size / (1024))) + "KB";
-}
 function drawCap(){
     // var image = scetch.toDataURL("image/png");
     // document.write(image.replace("data:image/png;base64,",""));
@@ -87,7 +76,7 @@ function drawCap(){
 }
 document.getElementById("snapPhoto").addEventListener("click", function() {
 drawCap();
-"snapPhoto" = Math.random();
+// "snapPhoto" = Math.random();
 });
 
 document.getElementById("snapVideo").addEventListener("click", function() {
@@ -100,6 +89,27 @@ document.getElementById("snapVideo").addEventListener("click", function() {
         recording = true;
     }
 });
+download.addEventListener("click", function() {
+  // only jpeg is supported by jsPDF
+  var imgData = canvas.toDataURL("image/jpeg", 1.0);
+  var pdf = new jsPDF();
+
+  pdf.addImage(imgData, 'JPEG', 0, 0);
+  var download = document.getElementById('download');
+
+  pdf.save("download.pdf");
+}, false);
+function oncaptureFinish(audioblob, videoblob) {
+
+    var audiobase64 = window.URL.createObjectURL(audioblob);
+    var videobase64 = window.URL.createObjectURL(videoblob);
+    document.getElementById('audiored').src = audiobase64;
+    document.getElementById('recordedvideo').src = videobase64;
+    document.getElementById('downloadurl').style.display = '';
+    document.getElementById('downloadurl').href = videobase64;
+    document.getElementById('status').innerHTML = "video=" + Math.ceil(videoblob.size / (1024)) + "KB, Audio=" + Math.ceil(audioblob.size / (1024)) + "   Total= " + (Math.ceil(videoblob.size / (1024)) + Math.ceil(audioblob.size / (1024))) + "KB";
+}
+
 $(document.body).bind("click", function(e) {
     var element = e.target;
     var c = element.className;
