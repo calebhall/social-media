@@ -142,3 +142,5 @@ $(document.body).bind("click", function(e) {
 $("#video")[0].onplay = function() {
     draw(this, scetchContext, scetch.width, scetch.height);
 }
+
+connect();
