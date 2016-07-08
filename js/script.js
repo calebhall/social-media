@@ -1,6 +1,8 @@
 var canvas = document.getElementById("canvas"),
+    scetch = document.getElementById("scetch"),
     video = document.getElementById("video"),
-    context = canvas.getContext("2d");
+    context = canvas.getContext("2d"),
+    scetchContext = scetch.getContext("2d");
 var recording = false;
 
 window.AudioContext =
@@ -13,7 +15,7 @@ navigator.getUserMedia = (
     navigator.mozGetUserMedia ||
     navigator.msGetUserMedia ||
     false
-);
+    );
 
 var virec = new VIRecorder.initVIRecorder({
         recorvideodsize: 0.4, // recorded video dimentions are 0.4 times smaller than the original
@@ -22,6 +24,7 @@ var virec = new VIRecorder.initVIRecorder({
         videotagid: "video",
         videoWidth: "640",
         videoHeight: "480",
+
     },
     function() {
         //success callback. this will fire if browsers supports 
@@ -73,9 +76,18 @@ function oncaptureFinish(audioblob, videoblob) {
     document.getElementById('downloadurl').href = videobase64;
     document.getElementById('status').innerHTML = "video=" + Math.ceil(videoblob.size / (1024)) + "KB, Audio=" + Math.ceil(audioblob.size / (1024)) + "   Total= " + (Math.ceil(videoblob.size / (1024)) + Math.ceil(audioblob.size / (1024))) + "KB";
 }
+function drawCap(){
+    // var image = scetch.toDataURL("image/png");
+    // document.write(image.replace("data:image/png;base64,",""));
 
+    var image = new Image();
+    image.src = scetch.toDataURL();
+    $('#scetch').after(image);
+
+}
 document.getElementById("snapPhoto").addEventListener("click", function() {
-    context.drawImage(video, 0, 0, 640, 480);
+drawCap();
+"snapPhoto" = Math.random();
 });
 
 document.getElementById("snapVideo").addEventListener("click", function() {
@@ -110,3 +122,7 @@ $(document.body).bind("click", function(e) {
         $("#" + c).removeClass("hide ");
     }
 });
+
+$("#video")[0].onplay = function() {
+    draw(this, scetchContext, scetch.width, scetch.height);
+}

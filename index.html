@@ -3,35 +3,83 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="css/style.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <link rel="styleshoot" type="text/css" href="css/picks.css">
+<style>
+div.img {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 180px;
+}
 
+div.img:hover {
+    border: 1px solid #777;
+}
+
+div.img img {
+    width: 100%;
+    height: auto;
+}
+
+div.desc {
+    padding: 15px;
+    text-align: center;
+}
+</style>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
 
 <body>
     <div id="bar">
         <ul>
-  <li><a href="#profile"><img id="profile" src="img/profile.jpg" alt="profile" style="width:50px;height:40px;"></a></li>
-  <li><a href="#post"><img id="cameraImage" src="img/cameraImage.jpg" alt="cameraImage" style="width:50px;height:40px;"></a></li>
-  <li><a href="#findfriends"><img id="friendship" src="img/friendship.jpg" alt="friendship" style="width:50px;height:40px;"></a></li><li><a href="#posts"><img id="posts" src="img/posts.jpg" alt="posts" style="width:50px;height:40px;"></a></li>
-</ul>
-    </div>
+
+            <li>
+                <a href="#profile"><img id="profile" src="img/profile.png" alt="profile" style="width:50px;height:40px;"></a>
+
+<div class="img">
+  <a target="blank" href="snapPhoto.jpg">
+    <img src="snapPhoto.jpg" alt="no 1" width="300" height="200">
+  </a>
+</div>            </li>
+            <li>
+                <a href="#post"><img id="cameraImage" src="img/cameraImage.tif" alt="cameraImage" style="width:50px;height:40px;"></a>
+            </li>
+            <li>
+                <a href="#findfriends"><img id="friendship" src="img/friendship.png" alt="friendship" style="width:50px;height:40px;"></a>
+            </li>
+            <li>
+                <a href="#posts"><img id="posts" src="img/posts.png" alt="posts" style="width:50px;height:40px;"></a>
+            </li>
+        </ul>
+        <div id="sayCheese">
+        </div>
+
+        <canvas id="scetch" width="640" height="480"> </canvas>
+
 
         <div id="post" class="content">
-    <video id="video" width="1000%" height="75%" autoplay></video>
-    <p id="status"></p>
-    <video id="recordedvideo" controls></video>
-    <audio id="audiored" controls></audio>
-    <a id="downloadurl">Download</a>
-    <button id="snapPhoto">Snap Photo</button>
-    <button id="snapVideo">Snap Video</button>
-    <form action="server.cgi" method="post" enctype="multipart/form-data">
-        <input type="file" accept="video/*;capture=camcorder">
-        <input type="submit" value="Upload" </form>
-        <canvas id="canvas" width="640" height="480"></canvas>
-        <script type="text/javascript" src="js/recorder.js"></script>
-        <script type="text/javascript" src="js/whammy.js"></script>
-        <script type="text/javascript" src="js/videoRecorder.js"></script>
-        <script type="text/javascript" src="js/script.js"></script>
+            <video id="video" width="1000%" height="75%" autoplay></video>
+            <p id="status"></p>
+            <div id="picker"></div>
+            <video id="recordedvideo" controls></video>
+            <audio id="audiored" controls></audio>
+            <a id="downloadurl">Download</a>
+            <button id="snapPhoto">Snap Photo</button>
+            <button id="snapVideo">Snap Video</button>
+            <form action="server.cgi" method="post" enctype="multipart/form-data">
+                <input type="file" accept="video/*;capture=camcorder">
+                <input type="submit" value="Upload" </form>
+                <canvas id="canvas" width="640" height="480"></canvas>
+                <script type="text/javascript" src="js/recorder.js"></script>
+                <script type="text/javascript" src="js/whammy.js"></script>
+                <script type="text/javascript" src="js/videoRecorder.js"></script>
+                <script type="text/javascript" src="js/script.js"></script>
+                <script type="text/javascript" src="js/colorpicker.js"></script>
+                <script type="text/javascript" src="js/draw.js"></script>
+
+</body>
 </body>
 
 </html>
