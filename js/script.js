@@ -66,16 +66,19 @@ if (navigator.getUserMedia) {
     }, errBack);
 }
 function drawCap(){
-    // var image = scetch.toDataURL("image/png");
+    var image = scetch.toDataURL("image/png");
+    var imgdata = image.replace(/^data:image\/(png|jpeg);base64,/, "");
     // document.write(image.replace("data:image/png;base64,",""));
 
-    var image = new Image();
-    image.src = scetch.toDataURL();
-    $('#scetch').after(image);
+    var boxThatDoesNotHaveText = new Image();
+    boxThatDoesNotHaveText.src = 'data:image/png;base64,'+imgdata;
+    $('#scetch').after(boxThatDoesNotHaveText);
 
 }
 document.getElementById("snapPhoto").addEventListener("click", function() {
-drawCap();
+    tweet('first thing made with sockenote');
+
+// drawCap();
 // "snapPhoto" = Math.random();
 });
 
@@ -89,6 +92,7 @@ document.getElementById("snapVideo").addEventListener("click", function() {
         recording = true;
     }
 });
+/*
 download.addEventListener("click", function() {
   // only jpeg is supported by jsPDF
   var imgData = canvas.toDataURL("image/jpeg", 1.0);
@@ -99,6 +103,8 @@ download.addEventListener("click", function() {
 
   pdf.save("download.pdf");
 }, false);
+*/
+
 function oncaptureFinish(audioblob, videoblob) {
 
     var audiobase64 = window.URL.createObjectURL(audioblob);
