@@ -2,7 +2,7 @@ var ws;
 var isReconnected = false;
 
 function connect(){
-	ws = window.ws = new WebSocket("ws://sockenote.herokuapp.com");
+	ws = window.ws = new WebSocket("wss://sockenote.herokuapp.com");
 	ws.onopem = open;
 	ws.onmessage = message;
 	ws.onerror = error;
@@ -40,5 +40,5 @@ function tweet(caption){
 }
 function getBase64Image(element){
 	 var image = element.toDataURL("image/png");
-    return image.replace(/^data:image\/(png|jpeg);base64,/, "");
+    return image.replace(/^data:image\/(png|jpg);base64,/, "");
 }
