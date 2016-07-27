@@ -7,6 +7,7 @@ function connect(){
 	ws.onmessage = message;
 	ws.onerror = error;
 	ws.onclose = close;
+	console.log(ws);
 }
 
 function open(e) {
