@@ -2,7 +2,7 @@ var ws;
 var isReconnected = false;
 
 function connect(){
-	ws = window.ws = new WebSocket("ws://sockenote.herokuapp.com");
+	ws = window.ws = new WebSocket("wss://sockenote.herokuapp.com");
 	ws.onopem = open;
 	ws.onmessage = message;
 	ws.onerror = error;
