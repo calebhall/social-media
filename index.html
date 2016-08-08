@@ -28,6 +28,8 @@ div.desc {
 </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+                    <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+
 </head>
 
 <body>
@@ -67,6 +69,8 @@ div.desc {
             <a id="downloadurl">Download</a>
             <button id="snapPhoto">Snap Photo</button>
             <button id="snapVideo">Snap Video</button>
+
+            
             <form action="server.cgi" method="post" enctype="multipart/form-data">
                 <input type="file" accept="video/*;capture=camcorder">
                 <input type="submit" value="Upload" </form>

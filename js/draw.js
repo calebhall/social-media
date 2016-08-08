@@ -42,7 +42,7 @@ function redraw() {
     }
 
 }
-$("#scetch").mousedown(function(e) {
+$("#scetch").bind("mousedown touchstart", function(e) {
     var mouseX = e.pageX - this.offsetLeft;
     var mouseY = e.pageY - this.offsetTop;
     console.log(mouseX, mouseY);
@@ -50,7 +50,7 @@ $("#scetch").mousedown(function(e) {
     addClick(mouseX, mouseY, false);
     // redraw();
 })
-$("#scetch").mousemove(function(e) {
+$("#scetch").bind("mousemove touchmove", function(e) {
     if (paint == true) {
         var mouseX = e.pageX - this.offsetLeft;
         var mouseY = e.pageY - this.offsetTop;
@@ -58,7 +58,7 @@ $("#scetch").mousemove(function(e) {
         // redraw();
     }
 })
-$("#scetch").mouseup(function(e) {
+$("#scetch").bind("mouseup touchend", function(e) {
 
     paint = false
 })
