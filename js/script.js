@@ -76,7 +76,7 @@ function drawCap(){
 
 }
 document.getElementById("snapPhoto").addEventListener("click", function() {
-    tweet('first thing made with sockenote');
+    tweet(<input type="text" name="fname"><br>);
 
 // drawCap();
 // "snapPhoto" = Math.random();
