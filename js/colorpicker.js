@@ -45,6 +45,30 @@
      }
    }
 
+   ColorPicker = function(element, options) {
+
+     this.options = extend({
+       color: '#e7e7e7',
+       palettes: ['#646fff', '#fffa1d', '#ffa21f', '#ff391d'],
+       onUpdate: function() {}
+     }, options);
+
+     this.options.palettes.unshift(this.options.color);
+
+     this.hex = this.options.color;
+     this.rgb = this.HEXtoRGB(this.hex);
+     this.hsv = this.RGBtoHSV(this.rgb[0], this.rgb[1], this.rgb[2]);
+     this.dom = {};
+     this.dom.container = document.createElement('div');
+     this.dom.container.className = 'color-picker-container';
+
+     element.appendChild(this.dom.container);
+
+     this.initPicker();
+
+     this.initPalettes();
+   }
+
    ColorPicker.prototype.initPicker = function() {
 
      this.dom.picker = {};
