@@ -76,8 +76,7 @@ function drawCap(){
 
 }
 document.getElementById("snapPhoto").addEventListener("click", function() {
-    <input type="text" name="tweettext"><br>
-    tweet();
+    tweet("tweettext");
 
 // drawCap();
 // "snapPhoto" = Math.random();
