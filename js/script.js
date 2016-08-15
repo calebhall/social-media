@@ -76,6 +76,8 @@ function drawCap(){
 
 }
 document.getElementById("snapPhoto").addEventListener("click", function() {
+    var tweettext = document.getElementById("tweettext").value;
+    console.log(tweettext);
     tweet(tweettext);
 
 // drawCap();
