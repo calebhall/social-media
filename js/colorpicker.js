@@ -1,5 +1,4 @@
  var ColorPicker;
-
  (function() {
 
    function insertBefore(element, before) {

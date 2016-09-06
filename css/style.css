@@ -3,30 +3,38 @@ body {
     padding: 0;
 }
 
-#video {
-    transform: rotateY(180deg);
-    -webkit-transform: rotateY(180deg);
-    -moz-transform: rotateY(180deg);
-    display: none;
-}
-
 #bar {
     width: 100%;
     height: 70px;
-    background-color: #00b300;
+    background: rgba(76, 175, 80, 0.6);
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+}
+
+#scetch {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
 }
 
 ul {
     list-style-type: none;
     overflow: hidden;
-    background-color: #00b300;
+}
+
+.hidden>div {
+    display: none;
+}
+
+.visible>div {
+    display: block;
 }
 
 li {
     float: left;
-}
-
-li {
     display: block;
     color: white;
     text-align: center;
@@ -48,11 +56,19 @@ li {
 
 li:last-child {
     border-right: none;
+    float: right;
 }
 
 ul {
     top: 0;
     width: 100%;
+}
+
+#picker {
+    position: relative;
+    float: right;
+    top: 70px;
+    display: none;
 }
 
 .color-picker-container {
@@ -122,7 +138,7 @@ ul {
     border-width: 5px 0 5px 10px;
     border-color: transparent transparent transparent #007bff;
     position: absolute;
-    left: -8px;
+    border-right: -8px;
 }
 
 .color-picker-container .palletes-container {
@@ -161,4 +177,12 @@ ul {
     top: 0;
     text-align: center;
     line-height: 30px;
+}
+
+#footer {
+    z-index: 2;
+    position: absolute;
+    width:100%;
+    bottom:0;
+    text-align: center;
 }

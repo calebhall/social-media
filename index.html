@@ -2,94 +2,50 @@
 <html>
 
 <head>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-        <link rel="styleshoot" type="text/css" href="css/picks.css">
-<style>
-div.img {
-    margin: 5px;
-    border: 1px solid #ccc;
-    float: left;
-    width: 180px;
-}
-
-div.img:hover {
-    border: 1px solid #777;
-}
-
-div.img img {
-    width: 100%;
-    height: auto;
-}
-
-div.desc {
-    padding: 15px;
-    text-align: center;
-}
-</style>
-
+    <link rel="stylesheet" type="text/css" href="css/picks.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-                    <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
-
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
 </head>
 
 <body>
+    <video id="video" width="1000%" height="75%" autoplay></video>
+    <canvas id="scetch"></canvas>
     <div id="bar">
         <ul>
-
             <li>
-                <a href="#profile"><img id="profile" src="img/profile.png" alt="profile" style="width:50px;height:40px;"></a>
-
-<div class="img">
-  <a target="blank" href="snapPhoto.jpg">
-    <img src="snapPhoto.jpg" alt="no 1" width="300" height="200">
-  </a>
-</div>            </li>
-            <li>
-                <a href="#post"><img id="cameraImage" src="img/cameraImage.tif" alt="cameraImage" style="width:50px;height:40px;"></a>
+                <a href="#profile">
+                    <img id="profile" src="img/profile.png" alt="profile" style="width:50px;height:40px;">
+                </a>
+                <div class="img">
+                    <a target="blank" href="snapPhoto.jpg">
+                        <img src="snapPhoto.jpg" alt="no 1" width="300" height="200;">
+                    </a>
+                </div>
             </li>
             <li>
-                <a href="#findfriends"><img id="friendship" src="img/friendship.png" alt="friendship" style="width:50px;height:40px;"></a>
-            </li>
-            <li>
-                <a href="#posts"><img id="posts" src="img/posts.png" alt="posts" style="width:50px;height:40px;"></a>
-            </li>
-            <li>
-                <a href="record"><video id="recordedvideo" controls></video> </a>
-            </li>
-                        <li>
-                <a href="record"><video id="recordedvideo" controls></video> </a>
+                <a href="#colorpicker">
+                    <img id="colorpicker" src="img/colorpicker.png" alt="colorpicker" style="width:50px;height:40px;">
+                    
+                </a>
             </li>
         </ul>
-        <div id="sayCheese">
-        </div>
-
-        <canvas id="scetch" width="1000" height="600" > </canvas>
-
-
-        <div id="post" class="content">
-            <video id="video" width="1000%" height="75%" autoplay></video>
-            <p id="status"></p>
-            <div id="picker"></div>
-
-            <a id="downloadurl">Download</a>
-            <button id="snapPhoto">Snap Photo</button>
-            <button id="snapVideo">Snap Video</button>
-
-            <br> Twitter text: <input type="text" id="tweettext"><br>
-
-            
-            <form action="server.cgi" method="post" enctype="multipart/form-data">
-                <canvas id="canvas" width="640" height="480"></canvas>
-                <script type="text/javascript" src="js/recorder.js"></script>
-                <script type="text/javascript" src="js/whammy.js"></script>
-                <script type="text/javascript" src="js/socket.js"></script>
-                <script type="text/javascript" src="js/videoRecorder.js"></script>
-                <script type="text/javascript" src="js/draw.js"></script>
-                <script type="text/javascript" src="js/script.js"></script>
-                <script type="text/javascript" src="js/colorpicker.js"></script>
-                
-
-</body>
+        <div id="picker"></div>
+    </div>
+    <div id="footer">
+        <button id="snapPhoto">Snap Photo </button>
+        <button id="snapVideo">Snap Video </button>
+        Twitter text:
+        <input type="text" id="tweettext">
+    </div>
+    <script type="text/javascript" src="js/recorder.js"></script>
+    <script type="text/javascript" src="js/whammy.js"></script>
+    <script type="text/javascript" src="js/socket.js"></script>
+    <script type="text/javascript" src="js/videoRecorder.js"></script>
+    <script type="text/javascript" src="js/draw.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/colorpicker.js"></script>
 </body>
 
 </html>

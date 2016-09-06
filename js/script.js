@@ -1,7 +1,5 @@
-var canvas = document.getElementById("canvas"),
-    scetch = document.getElementById("scetch"),
+var scetch = document.getElementById("scetch"),
     video = document.getElementById("video"),
-    context = canvas.getContext("2d"),
     scetchContext = scetch.getContext("2d");
 var recording = false;
 
@@ -15,7 +13,7 @@ navigator.getUserMedia = (
     navigator.mozGetUserMedia ||
     navigator.msGetUserMedia ||
     false
-    );
+);
 
 var virec = new VIRecorder.initVIRecorder({
         recorvideodsize: 0.4, // recorded video dimentions are 0.4 times smaller than the original
@@ -65,23 +63,25 @@ if (navigator.getUserMedia) {
 
     }, errBack);
 }
-function drawCap(){
+
+function drawCap() {
     var image = scetch.toDataURL("image/png");
     var imgdata = image.replace(/^data:image\/(png|jpeg);base64,/, "");
     // document.write(image.replace("data:image/png;base64,",""));
 
     var boxThatDoesNotHaveText = new Image();
-    boxThatDoesNotHaveText.src = 'data:image/png;base64,'+imgdata;
+    boxThatDoesNotHaveText.src = 'data:image/png;base64,' + imgdata;
     $('#scetch').after(boxThatDoesNotHaveText);
 
 }
 document.getElementById("snapPhoto").addEventListener("click", function() {
     var tweettext = document.getElementById("tweettext").value;
+
     console.log(tweettext);
     tweet(tweettext);
 
-// drawCap();
-// "snapPhoto" = Math.random();
+    // drawCap();
+    // "snapPhoto" = Math.random();
 });
 
 document.getElementById("snapVideo").addEventListener("click", function() {
@@ -115,34 +115,28 @@ function oncaptureFinish(audioblob, videoblob) {
     document.getElementById('recordedvideo').src = videobase64;
     document.getElementById('downloadurl').style.display = '';
     document.getElementById('downloadurl').href = videobase64;
-    document.getElementById('status').innerHTML = "video=" + Math.ceil(videoblob.size / (1024)) + "KB, Audio=" + Math.ceil(audioblob.size / (1024)) + "   Total= " + (Math.ceil(videoblob.size / (1024)) + Math.ceil(audioblob.size / (1024))) + "KB";
 }
 
-$(document.body).bind("click", function(e) {
-    var element = e.target;
-    var c = element.className;
-
-    if (c == "profile") {
-        console.log("profile selected");
-        $(".content").addClass("hide");
-        $("#" + c).removeClass("hide");
-    } else if (c == "post") {
-        console.log("post selected")
 
 
-        $(".content").addClass("hide");
-        $("#" + c).removeClass("hide");
-
-    } else if (c == "findfriends") {
-
-        console.log("findfriends selected")
-        $(".content").addClass("hide");
-        $("#" + c).removeClass("hide ");
+$("#colorpicker").bind("click", function(e){
+    console.log("YOU GET VERIATY NOWW");
+    if ($("#picker").is(":hidden")){
+        $("#picker").show();
+    }else{
+        $("#picker").hide();
     }
-});
+})
+
 
 $("#video")[0].onplay = function() {
     draw(this, scetchContext, scetch.width, scetch.height);
 }
+
+$(document).ready(function() {
+    console.log("ready!", window.innerWidth, window.innerHeight);
+    scetchContext.canvas.width = window.innerWidth;
+    scetchContext.canvas.height = window.innerHeight;
+});
 
 connect();
