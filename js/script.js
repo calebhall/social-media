@@ -44,7 +44,6 @@ if (navigator.getUserMedia) {
         console.log("stream");
 
         video.src = window.URL.createObjectURL(stream);
-
     }, errBack);
 
 } else if (navigator.webkitGetUserMedia) {
@@ -80,6 +79,7 @@ document.getElementById("snapPhoto").addEventListener("click", function() {
     console.log(tweettext);
     tweet(tweettext);
 
+    $('body').attr('data-active-scene', 'playback');
     // drawCap();
     // "snapPhoto" = Math.random();
 });
@@ -121,20 +121,20 @@ function oncaptureFinish(audioblob, videoblob) {
 
 $("#colorpicker").bind("click", function(e){
     console.log("YOU GET VERIATY NOWW");
-    if ($("#picker").is(":hidden")){
-        $("#picker").show();
+    if ($("#picker").css('opacity') == 0 ){
+        $("#picker").css('opacity', 1);
     }else{
-        $("#picker").hide();
+        $("#picker").css('opacity', 0);
     }
 })
 
 
 $("#video")[0].onplay = function() {
-    draw(this, scetchContext, scetch.width, scetch.height);
+
+        draw(this, scetchContext, scetch.width, scetch.height);
 }
 
 $(document).ready(function() {
-    console.log("ready!", window.innerWidth, window.innerHeight);
     scetchContext.canvas.width = window.innerWidth;
     scetchContext.canvas.height = window.innerHeight;
 });

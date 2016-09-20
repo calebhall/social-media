@@ -9,35 +9,33 @@
     <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
 </head>
 
-<body>
+<body data-active-scene='live'>
     <video id="video" width="1000%" height="75%" autoplay></video>
     <canvas id="scetch"></canvas>
     <div id="bar">
         <ul>
             <li>
-                <a href="#profile">
-                    <img id="profile" src="img/profile.png" alt="profile" style="width:50px;height:40px;">
+                <a href="#posts">
+                    <img id="posts" src="img/posts.png" alt="posts" style="width:50px;height:40px;">
                 </a>
-                <div class="img">
-                    <a target="blank" href="snapPhoto.jpg">
-                        <img src="snapPhoto.jpg" alt="no 1" width="300" height="200;">
-                    </a>
-                </div>
             </li>
             <li>
                 <a href="#colorpicker">
                     <img id="colorpicker" src="img/colorpicker.png" alt="colorpicker" style="width:50px;height:40px;">
-                    
                 </a>
             </li>
         </ul>
         <div id="picker"></div>
     </div>
     <div id="footer">
-        <button id="snapPhoto">Snap Photo </button>
-        <button id="snapVideo">Snap Video </button>
-        Twitter text:
-        <input type="text" id="tweettext">
+        <div class='block' data-status='button'>
+            <button id="snapPhoto">Snap Photo </button>
+            <button id="snapVideo">Snap Video </button>
+        </div>
+        <div class='block' data-status="text">
+            Twitter text:
+            <input type="text" id="tweettext">
+        </div>
     </div>
     <script type="text/javascript" src="js/recorder.js"></script>
     <script type="text/javascript" src="js/whammy.js"></script>

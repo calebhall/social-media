@@ -1,45 +1,65 @@
 var ws;
 var isReconnected = false;
 
-function connect(){
-	ws = window.ws = new WebSocket("wss://sockenote.herokuapp.com");
-	ws.onopem = open;
-	ws.onmessage = message;
-	ws.onerror = error;
-	ws.onclose = close;
-	console.log(ws);
+function connect() {
+    ws = window.ws = new WebSocket("wss://sockenote.herokuapp.com");
+    ws.onopem = open;
+    ws.onmessage = message;
+    ws.onerror = error;
+    ws.onclose = close;
+    console.log(ws);
 }
 
 function open(e) {
-	if (isReconnected)
-		return;
+    if (isReconnected)
+        return;
 }
 
 function message(e) {
-	console.log("message", e.data)
+    console.log("message", e.data)
 }
 
 function error(e) {
-	console.error('onerror', e);
-}
-function close(e) {
-	reconnect();
-}
-function reconnect() {
-	isReconnected = true;
-	setTimeout(connect, 1000);
+    console.error('onerror', e);
 }
 
-function tweet(caption){
-	var canvas = document.getElementById("scetch");	
-	var imgData = JSON.stringify(getBase64Image(canvas));
-	ws.send(JSON.stringify({
-		event: "share",
-		image: imgData,
-		tweet: caption
-	}));
+function close(e) {
+    reconnect();
 }
-function getBase64Image(element){
-	 var image = element.toDataURL("image/png");
+
+function reconnect() {
+    isReconnected = true;
+    setTimeout(connect, 1000);
+}
+
+function tweet(caption) {
+    var canvas = document.getElementById("scetch");
+    var imgData = JSON.stringify(getBase64Image(canvas));
+
+
+    // draw base64 image on canvas 'scetch'
+
+    var ctx = canvas.getContext("2d");
+    var image = new Image();
+    image.onload = function() {
+        ctx.drawImage(image, 0, 0);
+    };
+    image.src = imgData;
+
+    
+
+
+    return;
+
+
+    ws.send(JSON.stringify({
+        event: "share",
+        image: imgData,
+        tweet: caption
+    }));
+}
+
+function getBase64Image(element) {
+    var image = element.toDataURL("image/png");
     return image.replace(/^data:image\/(png|jpg);base64,/, "");
 }

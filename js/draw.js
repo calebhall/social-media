@@ -12,12 +12,17 @@ function addClick(x, y, dragging) {
 }
 
 function draw(v, c, w, h) {
-    if (v.paused || v.ended) return false;
-    c.drawImage(v, 0, 0, w, h);
 
-    redraw();
+    var scene = $('body').attr('data-active-scene');
+    if (scene == 'live') {
 
-    setTimeout(draw, 20, v, c, w, h);
+        if (v.paused || v.ended) return false;
+        c.drawImage(v, 0, 0, w, h);
+
+        redraw();
+
+        setTimeout(draw, 20, v, c, w, h);
+    }
 }
 
 function redraw() {
@@ -29,7 +34,7 @@ function redraw() {
 
         scetchContext.beginPath();
         if (click.dragging && i) {
-            var prevClick = colorSaver[i-1];
+            var prevClick = colorSaver[i - 1];
             scetchContext.moveTo(prevClick.x, prevClick.y);
         } else {
             scetchContext.moveTo(click.x - 1, click.y);
@@ -45,7 +50,6 @@ function redraw() {
 $("#scetch").bind("mousedown touchstart", function(e) {
     var mouseX = e.pageX - this.offsetLeft;
     var mouseY = e.pageY - this.offsetTop;
-    console.log(mouseX, mouseY);
     paint = true
     addClick(mouseX, mouseY, false);
     // redraw();
