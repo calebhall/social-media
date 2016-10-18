@@ -36,23 +36,6 @@ function tweet(caption) {
     var canvas = document.getElementById("scetch");
     var imgData = JSON.stringify(getBase64Image(canvas));
 
-
-    // draw base64 image on canvas 'scetch'
-
-    var ctx = canvas.getContext("2d");
-    var image = new Image();
-    image.onload = function() {
-        ctx.drawImage(image, 0, 0)
-        tweetext()
-    };
-    image.src = imgData;
-
-    
-
-
-    return;
-
-
     ws.send(JSON.stringify({
         event: "share",
         image: imgData,

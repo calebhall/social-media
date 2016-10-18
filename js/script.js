@@ -74,10 +74,7 @@ function drawCap() {
 
 }
 document.getElementById("snapPhoto").addEventListener("click", function() {
-    var tweettext = document.getElementById("tweettext").value;
-
-    console.log(tweettext);
-    //tweet(tweettext);
+ 
 
     $('body').attr('data-active-scene', 'playback');
      //drawCap();
@@ -94,6 +91,14 @@ document.getElementById("snapVideo").addEventListener("click", function() {
         recording = true;
     }
 });
+$("#tweettext").on("keyup", function (e){
+    if(e.keyCode == 13){
+           var tweettext = document.getElementById("tweettext").value;
+
+    console.log(tweettext);
+    tweet(tweettext);
+    }
+})
 /*
 download.addEventListener("click", function() {
   // only jpeg is supported by jsPDF
