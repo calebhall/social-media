@@ -77,11 +77,11 @@ document.getElementById("snapPhoto").addEventListener("click", function() {
     var tweettext = document.getElementById("tweettext").value;
 
     console.log(tweettext);
-    tweet(tweettext);
+    //tweet(tweettext);
 
     $('body').attr('data-active-scene', 'playback');
-    // drawCap();
-    // "snapPhoto" = Math.random();
+     //drawCap();
+//     "snapPhoto" = Math.random();
 });
 
 document.getElementById("snapVideo").addEventListener("click", function() {
