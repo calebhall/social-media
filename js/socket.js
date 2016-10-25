@@ -41,6 +41,9 @@ function tweet(caption) {
         image: imgData,
         tweet: caption
     }));
+
+    $('body').attr('data-active-scene', 'live');
+
 }
 
 function getBase64Image(element) {

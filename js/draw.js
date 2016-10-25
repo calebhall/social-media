@@ -16,13 +16,17 @@ function draw(v, c, w, h) {
     var scene = $('body').attr('data-active-scene');
     if (scene == 'live') {
 
-        if (v.paused || v.ended) return false;
+        if (v.paused || v.ended) {
+            console.log('video status', v.paused, v.ended)
+            return false;
+        }
         c.drawImage(v, 0, 0, w, h);
 
         redraw();
 
-        setTimeout(draw, 20, v, c, w, h);
     }
+
+    setTimeout(draw, 20, v, c, w, h);
 }
 
 function redraw() {

@@ -15,6 +15,7 @@ navigator.getUserMedia = (
     false
 );
 
+
 var virec = new VIRecorder.initVIRecorder({
         recorvideodsize: 0.4, // recorded video dimentions are 0.4 times smaller than the original
         webpquality: 0.7, // chrome and opera support webp imags, this is about the aulity of a frame
@@ -39,24 +40,18 @@ var errBack = function(error) {
 
 
 if (navigator.getUserMedia) {
-    console.log('normal')
     navigator.getUserMedia({ video: true }, function(stream) {
-        console.log("stream");
-
         video.src = window.URL.createObjectURL(stream);
     }, errBack);
 
 } else if (navigator.webkitGetUserMedia) {
-    console.log('webKit')
     navigator.webkitGetUserMedia({ video: true }, function(stream) {
-        console.log("webkitstream");
         video.src = window.webkitURL.createObjectURL(stream);
         audio: true
         video: true
     }, errBack);
 
 } else if (navigator.mozGetUserMedia) {
-    console.log('moz')
     navigator.mozGetUserMedia({ video: true }, function(stream) {
         video.src = window.URL.createObjectURL(stream);
 
@@ -66,19 +61,13 @@ if (navigator.getUserMedia) {
 function drawCap() {
     var image = scetch.toDataURL("image/png");
     var imgdata = image.replace(/^data:image\/(png|jpeg);base64,/, "");
-    // document.write(image.replace("data:image/png;base64,",""));
 
     var boxThatDoesNotHaveText = new Image();
     boxThatDoesNotHaveText.src = 'data:image/png;base64,' + imgdata;
     $('#scetch').after(boxThatDoesNotHaveText);
-
 }
 document.getElementById("snapPhoto").addEventListener("click", function() {
- 
-
     $('body').attr('data-active-scene', 'playback');
-     //drawCap();
-//     "snapPhoto" = Math.random();
 });
 
 document.getElementById("snapVideo").addEventListener("click", function() {
@@ -91,27 +80,29 @@ document.getElementById("snapVideo").addEventListener("click", function() {
         recording = true;
     }
 });
+
 $("#tweettext").on("keyup", function (e){
     if(e.keyCode == 13){
            var tweettext = document.getElementById("tweettext").value;
 
-    console.log(tweettext);
     tweet(tweettext);
     }
 })
-/*
-download.addEventListener("click", function() {
-  // only jpeg is supported by jsPDF
-  var imgData = canvas.toDataURL("image/jpeg", 1.0);
-  var pdf = new jsPDF();
+// $(document.body).bind("click", function(e) {
 
-  pdf.addImage(imgData, 'JPEG', 0, 0);
-  var download = document.getElementById('download');
+//         var element = e.target;
+//         var c = element.className;
 
-  pdf.save("download.pdf");
-}, false);
-*/
+//         if (c == "posts") {
+//             console.log("posts selected");
+//             $(".content").addClass("z");
+//             $("#" + c).removeClass("hide");
+//         } else if (c == "uploads") {
+//             console.log("uploads selected")
+//             $(".content").addClass("hide");
+//             $("#" + c).removeClass("hide");
 
+//         }
 function oncaptureFinish(audioblob, videoblob) {
 
     var audiobase64 = window.URL.createObjectURL(audioblob);
@@ -121,7 +112,6 @@ function oncaptureFinish(audioblob, videoblob) {
     document.getElementById('downloadurl').style.display = '';
     document.getElementById('downloadurl').href = videobase64;
 }
-
 
 
 $("#colorpicker").bind("click", function(e){
