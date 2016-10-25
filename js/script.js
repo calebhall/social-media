@@ -1,4 +1,5 @@
-var scetch = document.getElementById("scetch"),
+
+ var scetch = document.getElementById("scetch"),
     video = document.getElementById("video"),
     scetchContext = scetch.getContext("2d");
 var recording = false;
@@ -122,6 +123,15 @@ $("#colorpicker").bind("click", function(e){
         $("#picker").css('opacity', 0);
     }
 })
+$("#uploads").bind("click", function(e){
+    console.log("YOU GET VERIATY NOWW");
+    if ($("#twitter").css('opacity') == 0 ){
+        $("#twitter").css('opacity', 1);
+    }else{
+        $("#twitter").css('opacity', 0);
+    }
+})
+
 
 
 $("#video")[0].onplay = function() {

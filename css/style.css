@@ -65,8 +65,9 @@ ul {
 }
 
 #picker {
-    position: relative;
+    position: absolute;
     float: right;
+    right: 0;
     top: 70px;
     /*display: none;*/
     opacity: 0;
@@ -186,8 +187,8 @@ ul {
     position: absolute;
     background: #edeaf2;
     top: 50;
-    width:15%;
-    bottom:0;
+    /*width:10%;*/
+    bottom: 25px;
     left: 45%;
     text-align: center;
 }
@@ -200,5 +201,12 @@ ul {
 }
 [data-active-scene='playback'] [data-status='text']{
     display: block;
+}
+#twitter{
+        z-index: 300;
+    position: absolute;
+    width: 37%;
+    top: 70px;
+    opacity: 0;
 }
 
