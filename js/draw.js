@@ -1,6 +1,9 @@
 var paint = false
-var colorSaver = new Array();
-// var colorSaver = [];
+
+var strokes = new Array(); // collection of strokes
+// var stroke = new Array(); // current stroke
+
+var brushSize = 10;
 
 function addClick(x, y, dragging) {
     var click = {};
@@ -8,7 +11,12 @@ function addClick(x, y, dragging) {
     click.y = y;
     click.color = picker.hex;
     click.dragging = dragging;
-    colorSaver.push(click);
+click.brushSize = brushSize;
+    // push current click to current stroke
+    var currentStroke = strokes[strokes.length - 1];
+    currentStroke.push(click);
+
+    console.log(click)
 }
 
 function draw(v, c, w, h) {
@@ -20,53 +28,67 @@ function draw(v, c, w, h) {
             console.log('video status', v.paused, v.ended)
             return false;
         }
-        c.drawImage(v, 0, 0, w, h);
 
+        c.drawImage(v, 0, 0, w, h);
         redraw();
 
     }
 
-    setTimeout(draw, 20, v, c, w, h);
+    setTimeout(draw, 10, v, c, w, h);
 }
 
 function redraw() {
+    scetchContext.lineJoin = "round";
+    scetchContext.lineCap = "round";
 
-    scetchContext.linejoin = "round";
-    scetchContext.lineWidth = 5;
-    for (var i = 0; i < colorSaver.length; i++) {
-        var click = colorSaver[i];
+    // make double for-loop
+    // outer: strokes (collection of strokes)
+    // inner: single stroke
 
-        scetchContext.beginPath();
-        if (click.dragging && i) {
-            var prevClick = colorSaver[i - 1];
-            scetchContext.moveTo(prevClick.x, prevClick.y);
-        } else {
-            scetchContext.moveTo(click.x - 1, click.y);
+    for (var i = 0; i < strokes.length; i++) {
+
+        var stroke = strokes[i];
+        if (stroke.length > 0) {
+            var firstClick = stroke[0];
+            scetchContext.beginPath();
+    scetchContext.lineWidth = firstClick.brushSize;
+
+            scetchContext.strokeStyle = firstClick.color;
+            scetchContext.moveTo(firstClick.x, firstClick.y);
+
+            // a stroke = a line
+            for (var j = 0; j < stroke.length - 2; j++) {
+                // every single point
+                var click = stroke[j];
+                var c = (stroke[j].x + stroke[j + 1].x) / 2;
+                var d = (stroke[j].y + stroke[j + 1].y) / 2;
+                scetchContext.quadraticCurveTo(stroke[j].x, stroke[j].y, c, d);
+            }
+            scetchContext.stroke();
         }
-        scetchContext.lineTo(click.x, click.y);
-        scetchContext.closePath();
-        scetchContext.strokeStyle = click.color;
-        scetchContext.stroke();
 
     }
-
 }
 $("#scetch").bind("mousedown touchstart", function(e) {
+
+    // push empty array to strokes
+    strokes.push([]);
+
     var mouseX = e.pageX - this.offsetLeft;
     var mouseY = e.pageY - this.offsetTop;
     paint = true
-    addClick(mouseX, mouseY, false);
+    addClick(window.innerWidth - mouseX, mouseY, false);
     // redraw();
 })
 $("#scetch").bind("mousemove touchmove", function(e) {
     if (paint == true) {
         var mouseX = e.pageX - this.offsetLeft;
         var mouseY = e.pageY - this.offsetTop;
-        addClick(mouseX, mouseY, true);
+        addClick(window.innerWidth - mouseX, mouseY, true);
         // redraw();
     }
 })
 $("#scetch").bind("mouseup touchend", function(e) {
 
-    paint = false
+    paint = false;
 })

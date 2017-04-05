@@ -1,5 +1,4 @@
-
- var scetch = document.getElementById("scetch"),
+var scetch = document.getElementById("scetch"),
     video = document.getElementById("video"),
     scetchContext = scetch.getContext("2d");
 var recording = false;
@@ -82,14 +81,14 @@ document.getElementById("snapVideo").addEventListener("click", function() {
     }
 });
 
-$("#tweettext").on("keyup", function (e){
-    if(e.keyCode == 13){
-           var tweettext = document.getElementById("tweettext").value;
+$("#tweettext").on("keyup", function(e) {
+        if (e.keyCode == 13) {
+            var tweettext = document.getElementById("tweettext").value;
 
-    tweet(tweettext);
-    }
-})
-// $(document.body).bind("click", function(e) {
+            tweet(tweettext);
+        }
+    })
+    // $(document.body).bind("click", function(e) {
 
 //         var element = e.target;
 //         var c = element.className;
@@ -115,28 +114,38 @@ function oncaptureFinish(audioblob, videoblob) {
 }
 
 
-$("#colorpicker").bind("click", function(e){
+$("#colorpicker").bind("click", function(e) {
     console.log("YOU GET VERIATY NOWW");
-    if ($("#picker").css('opacity') == 0 ){
-        $("#picker").css('opacity', 1);
-    }else{
-        $("#picker").css('opacity', 0);
+    if ($("#picker").css('display') == "none") {
+        $("#picker").css('display', "block");
+        $("#picker").css('z-index', 300);
+    } else {
+        $("#picker").css('display', "none");
+        $("#picker").css('z-index', -2);
+        // $("#closedPicker").css("display", 0);
     }
 })
-$("#uploads").bind("click", function(e){
+$("#uploads").bind("click", function(e) {
     console.log("YOU GET VERIATY NOWW");
-    if ($("#twitter").css('opacity') == 0 ){
+    if ($("#twitter").css('opacity') == 0) {
         $("#twitter").css('opacity', 1);
-    }else{
+        $("#twitter").css('z-index', 300);
+    } else {
         $("#twitter").css('opacity', 0);
+        $("#twitter").css('z-index', -1);
     }
-})
+});
 
+$("input").on('change', function() {
+    var size = $(this).val();
+    brushSize = size;
+});
 
 
 $("#video")[0].onplay = function() {
-
-        draw(this, scetchContext, scetch.width, scetch.height);
+    // scetchContext.translate(scetch.width, 0);
+    // scetchContext.scale(-1, 1);
+    // draw(this, scetchContext, scetch.width, scetch.height);
 }
 
 $(document).ready(function() {

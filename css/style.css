@@ -65,15 +65,18 @@ ul {
 }
 
 #picker {
+    z-index: -2;
     position: absolute;
     float: right;
     right: 0;
     top: 70px;
-    /*display: none;*/
-    opacity: 0;
+    display: none;
+    /*opacity: 0;*/
 }
 
-
+/*#closedPicker{
+    display: none;
+}*/
 .color-picker-container {
     display: inline-block;
     background: #5d5f60 none repeat scroll 0% 0%;
@@ -181,6 +184,12 @@ ul {
     text-align: center;
     line-height: 30px;
 }
+#brushSize{
+/*    width: 245px;
+    margin: 10px 20px;*/
+    width: 90%;
+    margin: 10px 5%;
+}
 
 #footer {
     z-index: 2;
@@ -203,7 +212,7 @@ ul {
     display: block;
 }
 #twitter{
-        z-index: 300;
+    z-index: -1;
     position: absolute;
     width: 37%;
     top: 70px;

@@ -118,7 +118,7 @@ var VIRecorder = (function(){
     
 
    init.prototype.startCapture = function() {
-            console.log("startCapture");
+            console.warn("startCapture");
             startTime = new Date().getTime();
             // ------- Video Recording started ---------------------------------
             var newWidth = canvas.width  = parseInt(quality*videoElement.clientWidth);
@@ -129,6 +129,7 @@ var VIRecorder = (function(){
             recorder && recorder.record();
 
             recrodinterval = setInterval(function(){
+                ctx.scale(-1,1);
                 ctx.drawImage(videoElement, 0, 0, newWidth, newHeight);
                 frames.push(canvas.toDataURL('image/webp', webp_quality));
             }, timmer);
