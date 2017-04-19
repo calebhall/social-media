@@ -29,7 +29,8 @@ function draw(v, c, w, h) {
             return false;
         }
 
-        c.drawImage(v, 0, 0, w, h);
+        mirrorContext.drawImage(v, 0, 0, w, h);
+
         redraw();
 
     }

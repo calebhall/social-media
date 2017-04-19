@@ -1,6 +1,8 @@
 var scetch = document.getElementById("scetch"),
     video = document.getElementById("video"),
-    scetchContext = scetch.getContext("2d");
+    scetchContext = scetch.getContext("2d"),
+    mirror = document.getElementById("mirror"),
+    mirrorContext = mirror.getContext("2d");
 var recording = false;
 
 window.AudioContext =
@@ -143,14 +145,19 @@ $("input").on('change', function() {
 
 
 $("#video")[0].onplay = function() {
-    // scetchContext.translate(scetch.width, 0);
-    // scetchContext.scale(-1, 1);
-    // draw(this, scetchContext, scetch.width, scetch.height);
+    scetchContext.translate(scetch.width, 0);
+    scetchContext.scale(-1, 1);
+
+    draw(this, scetchContext, scetch.width, scetch.height);
 }
 
 $(document).ready(function() {
     scetchContext.canvas.width = window.innerWidth;
     scetchContext.canvas.height = window.innerHeight;
+    mirrorContext.canvas.width = window.innerWidth;
+    mirrorContext.canvas.height = window.innerHeight;
 });
 
+
 connect();
+//http://stackoverflow.com/questions/25907163/html5-canvas-eraser-tool-without-overdraw-white-color2
