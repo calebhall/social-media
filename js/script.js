@@ -1,6 +1,10 @@
 var scetch = document.getElementById("scetch"),
+    mirror = document.getElementById("mirror"),
     video = document.getElementById("video"),
-    scetchContext = scetch.getContext("2d");
+    mirrorContext = mirror.getContext("2d"),
+    scetchContext = scetch.getContext("2d"),
+    FinCon = document.getElementById("FinCon"),
+    FinConContext = FinCon.getContext("2d");
 var recording = false;
 
 window.AudioContext =
@@ -68,6 +72,11 @@ function drawCap() {
 }
 document.getElementById("snapPhoto").addEventListener("click", function() {
     $('body').attr('data-active-scene', 'playback');
+
+    
+        FinConContext.clearRect(0, 0, FinCon.width, FinCon.height);
+        FinConContext.drawImage(mirror, 0, 0);
+        FinConContext.drawImage(scetch, 0, 0);
 });
 
 document.getElementById("snapVideo").addEventListener("click", function() {
@@ -80,7 +89,6 @@ document.getElementById("snapVideo").addEventListener("click", function() {
         recording = true;
     }
 });
-
 $("#tweettext").on("keyup", function(e) {
         if (e.keyCode == 13) {
             var tweettext = document.getElementById("tweettext").value;
@@ -143,14 +151,19 @@ $("input").on('change', function() {
 
 
 $("#video")[0].onplay = function() {
-    // scetchContext.translate(scetch.width, 0);
-    // scetchContext.scale(-1, 1);
-    // draw(this, scetchContext, scetch.width, scetch.height);
+    console.log("#video");
+     mirrorContext.translate(mirror.width, 0);
+     mirrorContext.scale(-1, 1);
+     draw(this, mirrorContext, mirror.width, mirror.height);
 }
 
 $(document).ready(function() {
     scetchContext.canvas.width = window.innerWidth;
     scetchContext.canvas.height = window.innerHeight;
+    mirrorContext.canvas.width = window.innerWidth;
+    mirrorContext.canvas.height = window.innerHeight;
+        FinConContext.canvas.width = window.innerWidth;
+    FinConContext.canvas.height = window.innerHeight;
 });
 
 connect();
