@@ -32,8 +32,8 @@ function reconnect() {
     setTimeout(connect, 1000);
 }
 
-function tweet(caption) {
-    var canvas = document.getElementById("scetch");
+function tweet(caption) {    
+    var canvas = document.getElementById("FinCon");
     var imgData = JSON.stringify(getBase64Image(canvas));
 
     ws.send(JSON.stringify({
@@ -41,7 +41,9 @@ function tweet(caption) {
         image: imgData,
         tweet: caption
     }));
-
+    strokes = [];
+  scetchContext.clearRect(0, 0, scetch.width, scetch.height);
+  $("#tweettext").val("");
     $('body').attr('data-active-scene', 'live');
 
 }

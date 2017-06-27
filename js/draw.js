@@ -16,7 +16,6 @@ click.brushSize = brushSize;
     var currentStroke = strokes[strokes.length - 1];
     currentStroke.push(click);
 
-    console.log(click)
 }
 
 function draw(v, c, w, h) {
@@ -32,12 +31,16 @@ function draw(v, c, w, h) {
         c.drawImage(v, 0, 0, w, h);
         redraw();
 
+
     }
 
     setTimeout(draw, 10, v, c, w, h);
 }
 
 function redraw() {
+    scetchContext.save();
+         scetchContext.translate(scetch.width, 0);
+     scetchContext.scale(-1, 1);
     scetchContext.lineJoin = "round";
     scetchContext.lineCap = "round";
 
@@ -64,10 +67,12 @@ function redraw() {
                 var d = (stroke[j].y + stroke[j + 1].y) / 2;
                 scetchContext.quadraticCurveTo(stroke[j].x, stroke[j].y, c, d);
             }
+
             scetchContext.stroke();
         }
 
     }
+    scetchContext.restore();
 }
 $("#scetch").bind("mousedown touchstart", function(e) {
 
