@@ -78,6 +78,8 @@ document.getElementById("snapPhoto").addEventListener("click", function() {
         FinConContext.translate(FinCon.width, 0);
         FinConContext.scale(-1, 1);
         FinConContext.drawImage(mirror, 0, 0);
+        FinConContext.translate(FinCon.width, 0);
+        FinConContext.scale(-1, 1);
         FinConContext.drawImage(scetch, 0, 0);
 });
 
