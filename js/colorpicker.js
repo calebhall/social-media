@@ -522,6 +522,6 @@ $(this.dom.picker.canvas.canvas).mousedown(function(e){
 
  var picker = new ColorPicker(document.getElementById('picker'), {
      onUpdate: function(rgb) {
-         document.body.style.background = "rgb(" + rgb[0] + ", " + rgb[1] + ", " + rgb[2] + ")";
+         // document.body.style.background = "rgb(" + rgb[0] + ", " + rgb[1] + ", " + rgb[2] + ")";
      }
  });
