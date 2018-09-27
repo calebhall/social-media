@@ -27,6 +27,9 @@ video {
     position: absolute;
     left: 0;
     top: 0;
+    transform: rotateY(180deg);
+    -webkit-transform:rotateY(180deg);
+    -moz-transform:rotateY(180deg);
 }
 
 
