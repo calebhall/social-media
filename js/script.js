@@ -83,16 +83,16 @@ document.getElementById("snapPhoto").addEventListener("click", function() {
         FinConContext.drawImage(scetch, 0, 0);
 });
 
-document.getElementById("snapVideo").addEventListener("click", function() {
+// document.getElementById("snapVideo").addEventListener("click", function() {
 
-    if (recording) {
-        recording = false;
-        virec.stopCapture(oncaptureFinish);
-    } else {
-        virec.startCapture();
-        recording = true;
-    }
-});
+//     if (recording) {
+//         recording = false;
+//         virec.stopCapture(oncaptureFinish);
+//     } else {
+//         virec.startCapture();
+//         recording = true;
+//     }
+// });
 $("#tweettext").on("keyup", function(e) {
         if (e.keyCode == 13) {
             var tweettext = document.getElementById("tweettext").value;
