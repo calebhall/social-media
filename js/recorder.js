@@ -9,6 +9,10 @@
     this.node = (this.context.createScriptProcessor ||
                  this.context.createJavaScriptNode).call(this.context,
                                                          bufferLen, 2, 2);
+
+    console.log('source', source, 'cfg', cfg);
+    console.log('context', this.context);
+    console.log('node', this.node)
     var worker = new Worker(config.workerPath || WORKER_PATH);
                      console.log("workerpath", config.workerPath);
                  console.log("WORKER_PATH", WORKER_PATH);
